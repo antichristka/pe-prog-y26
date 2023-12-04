@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Lab3": {
+      "commandName": "Project"
+    },
+    "Профиль 1": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Users\\kater\\source\\repos\\Lab3\\Lab3\\test\\Test.cs"
+    }
+  }
+}
