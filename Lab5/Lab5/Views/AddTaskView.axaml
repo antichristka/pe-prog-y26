@@ -1,0 +1,22 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:global="clr-namespace:"
+        Title="Add Task"
+        Width="400"
+        Height="300"
+        x:Class="Lab5.Views.AddTaskView"
+        x:DataType="global:AddTaskViewModel">
+    <StackPanel>
+        <TextBlock Text="Title:"/>
+        <TextBox Text="{Binding Title}"/>
+        <TextBlock Text="Description:"/>
+        <TextBox Text="{Binding Description}"/>
+        <TextBlock Text="Deadline:"/>
+        <DatePicker SelectedDate="{Binding Deadline}"/>
+        <TextBlock Text="Tags:"/>
+        <TextBox Text="{Binding Tags}"/>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="OK" Command="{Binding AddTaskCommand}"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

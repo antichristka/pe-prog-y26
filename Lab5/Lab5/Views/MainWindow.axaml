@@ -1,0 +1,63 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Lab5.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="450"
+        x:Class="Lab5.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="Kate's To-do"
+		Width="600">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <StackPanel>
+        <StackPanel.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Edit Task" Command="{Binding EditTaskCommand}" />
+                <MenuItem Header="New Task" Command="{Binding ShowAddTaskCommand}" />
+                <MenuItem Header="Delete" Command="{Binding DeleteTaskCommand}" CommandParameter="{Binding SelectedTask}" />
+            </ContextMenu>
+        </StackPanel.ContextMenu>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="10">
+			<Button Command="{Binding ShowAddTaskCommand}" Content="Add Task">
+				<Button.Styles>
+					<Style Selector="Button:pointerover Image">
+						<Setter Property="Width" Value="150" />
+						<Setter Property="Height" Value="150" />
+						<Setter Property="Margin" Value="25"/>
+					</Style>
+					<Style Selector="Button:pressed Image">
+						<Setter Property="Width" Value="200" />
+						<Setter Property="Height" Value="200" />
+						<Setter Property="Margin" Value="0"/>
+					</Style>
+				</Button.Styles>
+			</Button>
+        </StackPanel>
+
+        <ListBox ItemsSource="{Binding Tasks}"
+                 SelectedItem="{Binding SelectedTask}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Expander>
+                        <Expander.Header>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <CheckBox IsChecked="{Binding Path=IsCompleted}" />
+                                <TextBlock Text="{Binding Title}" />
+                            </StackPanel>
+                        </Expander.Header>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Description}" />
+                            <TextBlock Text="{Binding Deadline}" />
+                            <TextBlock Text="{Binding Tags}" />
+                        </StackPanel>
+                    </Expander>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ListBox>
+    </StackPanel>
+</Window>
